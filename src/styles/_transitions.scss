@@ -1,0 +1,145 @@
+.fade {
+  &-enter {
+    opacity: 0;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
+}
+
+.fade1000 {
+  &-enter {
+    opacity: 0;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms;
+  }
+}
+
+.slide-up {
+  &-enter {
+    transform: translateY(150%);
+  }
+
+  &-enter-active {
+    transform: translateY(0);
+    transition: transform 300ms;
+  }
+
+  &-exit {
+    transform: translateY(0);
+  }
+
+  &-exit-active {
+    transform: translateY(150%);
+    transition: transform 300ms;
+  }
+}
+
+.extend-400 {
+  &-enter {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    max-height: 2000px;
+    transition: opacity 0.2s ease, max-height 0.2s ease;
+  }
+
+  &-exit {
+    opacity: 1;
+    max-height: 2000px;
+    overflow: hidden;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 0.2s ease, max-height 0.2s ease;
+  }
+}
+
+.extend-p05-200 {
+  &-enter {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    max-height: 2000px;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    transition: opacity 0.2s ease, max-height 0.2s ease-in-out, padding 0.2s ease-in-out, margin 0.2s ease-in-out, gap 0.2s ease-in-out;
+  }
+
+  &-exit {
+    opacity: 1;
+    max-height: 2000px;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    overflow: hidden;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: opacity 0.2s ease, max-height 0.2s ease-in-out, padding 0.2s ease-in-out, margin 0.2s ease-in-out, gap 0.2s ease-in-out;
+  }
+}
+
+.extend-400t {
+  &-enter {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+
+  &-enter-active {
+    opacity: 1;
+    max-height: 2000px;
+    transition: opacity .5s ease, max-height .5s ease;
+  }
+
+  &-exit {
+    opacity: 1;
+    max-height: 2000px;
+    overflow: hidden;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity .5s ease, max-height .5s ease;
+  }
+}

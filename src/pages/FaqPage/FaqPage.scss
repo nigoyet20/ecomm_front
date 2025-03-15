@@ -1,0 +1,43 @@
+@use '../../styles/breakpoint.scss';
+@use '../../styles/variables' as v;
+
+.faqPage {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin: 10% 0 0 0;
+  padding: 0 3rem;
+  text-align: center;
+
+  @include breakpoint.media(tablet_mini) {
+    margin: 4%;
+  }
+
+  &_question {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  &_text {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: v.$textColor-primary;
+  }
+
+  &_description {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: v.$textColor-colorDark;
+  }
+
+  &_button {
+    border: none;
+    background-color: v.$bgColor-primary;
+    border-radius: 20px;
+    padding: 0.6rem 1.5rem;
+    color: v.$textColor-colorWhite;
+    text-decoration: none;
+  }
+}

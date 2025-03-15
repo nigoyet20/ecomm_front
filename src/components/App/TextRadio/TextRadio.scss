@@ -1,0 +1,35 @@
+@use '../../../styles/breakpoint.scss';
+@use '../../../styles/variables' as v;
+
+
+.states {
+  display: flex;
+  flex-direction: row;
+  gap: 0.4rem;
+  transition: border 0.2s ease-in;
+  flex-wrap: wrap;
+
+  &_label {
+    position: relative;
+    border: solid 2px v.$textColor-colorGray;
+    padding: 0.6rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    transition: all 0.2s ease-in;
+
+
+    &-checked {
+      border: solid 2px v.$textColor-colorBlack;
+    }
+
+    &_input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+}

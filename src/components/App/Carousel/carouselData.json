@@ -1,0 +1,20 @@
+{
+  "slides": [
+    {
+      "src": "/img/carousel/carousel4.webp",
+      "alt": "First slide carousel",
+      "title": "Découvrez nos meilleurs offres",
+      "description": "Votre nouvel iPhone vous attend",
+      "button": "Profitez des offres exceptionnelles",
+      "buttonLink": "First slide button link"
+    },
+    {
+      "src": "/img/carousel/carousel5.webp",
+      "alt": "Second slide carousel",
+      "title": "Trouver le téléphone qui vous convient",
+      "description": "Pas d'idées précises ?",
+      "button": "Découvrez notre catalogue",
+      "buttonLink": "First slide button link"
+    }
+  ]
+}

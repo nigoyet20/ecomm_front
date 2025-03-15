@@ -1,0 +1,205 @@
+@use '../../../styles/breakpoint.scss';
+
+.carousel {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include breakpoint.media(mobile) {
+    height: 70vh;
+  }
+
+  @include breakpoint.media(tablet_xs) {
+    height: 50vh;
+  }
+
+  @include breakpoint.media(tablet_mini) {
+    height: 100vh;
+  }
+
+  &_content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    z-index: 4;
+
+    &-hidden {
+      display: none;
+    }
+
+    &_title {
+      order: 2;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+      max-width: 80%;
+      text-shadow: 0px 0px 5px black;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &_description {
+      order: 1;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-shadow: 0px 0px 5px black;
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    &_button {
+      order: 3;
+      text-decoration: none;
+      background-color: white;
+      color: black;
+      padding: 0.8rem 1rem;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 700;
+      box-shadow: 0px 0px 5px black;
+      transition: opacity 0.2s ease-in-out;
+    }
+  }
+
+  &_slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all 0.2s ease-in-out;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    // @include breakpoint.media(mobile) {
+    //   height: 100%;
+    //   overflow: hidden;
+    //   object-fit: cover;
+    // }
+
+    // @include breakpoint.media(tablet_xs) {
+    //   height: 100%;
+    //   overflow: hidden;
+    //   object-fit: cover;
+    // }
+
+    &-entering {
+      opacity: 0;
+      z-index: 1;
+    }
+
+    &-active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    &-inactive {
+      opacity: 0;
+      z-index: 2;
+    }
+
+    &-hidden {
+      opacity: 0;
+      z-index: 1;
+      display: none;
+    }
+  }
+
+  &_arrow {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    color: white;
+    cursor: pointer;
+    z-index: 3;
+
+    &-left {
+      left: 1rem;
+    }
+
+    &-right {
+      right: 1rem;
+    }
+  }
+
+  &_indicators {
+    display: flex;
+    position: absolute;
+    bottom: 1rem;
+    right: 10%;
+    gap: 0.5rem;
+    z-index: 2;
+
+    &_indicator {
+      height: 0.6rem;
+      border-radius: 50px;
+      border: none;
+      outline: none;
+      box-shadow: 0px 0px 5px #555;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &-active {
+        width: 2rem;
+        background-color: white;
+      }
+
+      &-inactive {
+        background-color: grey;
+        width: 0.6rem;
+      }
+    }
+  }
+}
+
+.transi-ft-entering {
+  opacity: 0;
+  transform: translateY(30%);
+}
+
+.transi-ft-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.transi-ft-inactive {
+  opacity: 0;
+}
+
+.transi-ft-hidden {
+  opacity: 0;
+  display: none;
+}
+
+
+.transi-f-entering {
+  opacity: 0;
+}
+
+.transi-f-active {
+  opacity: 1;
+}
+
+.transi-f-inactive {
+  opacity: 0;
+}
+
+.transi-f-hidden {
+  opacity: 0;
+  display: none;
+}

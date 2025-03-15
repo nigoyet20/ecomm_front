@@ -1,0 +1,104 @@
+@use '../../../styles/breakpoint.scss';
+@use '../../../styles/variables' as v;
+
+.service {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  white-space: nowrap;
+  width: 100vw;
+  margin-top: 1rem;
+
+  
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+
+  scrollbar-width: none;
+
+  @include breakpoint.media(desktop) {
+    justify-content: center;
+    align-self: center;
+    width: 80vw;
+    margin-top: 3rem;
+  }
+
+  &_card {
+    flex: 0 0 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    gap: 1rem;
+    padding: 1rem;
+    height: 100%;
+    background-color: white;
+    border-radius: 1rem;
+    ;
+    box-sizing: border-box;
+
+    @include breakpoint.media(desktop) {
+      flex: 0 0 25%;
+    }
+
+    &_icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      color: white;
+      background-color: v.$bgColor-primary;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50px;
+    }
+
+    &_content {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      white-space: normal;
+      word-wrap: break-word;
+      text-align: center;
+
+      &_title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: v.$textColor-primary;
+      }
+
+      &_description {
+        font-size: 1rem;
+        color: #666;
+      }
+    }
+  }
+}
+
+.service_navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @include breakpoint.media(desktop) {
+    display: none;
+  }
+
+  .nav_dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    cursor: pointer;
+
+    &.active {
+      background-color: v.$bgColor-primary;
+    }
+  }
+}

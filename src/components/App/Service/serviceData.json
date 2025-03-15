@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "title": "Un service d'Apple store chez ODP store.",
+      "description": "Nos produits sont testés, vérifiés, nettoyés, emballés dans nos magasins en France.",
+      "iconPackage": "Fa",
+      "icon": "FaApple"
+    },
+    {
+      "title": "Les Garanties du Neuf, mais moins chers.",
+      "description": "Nos produits sont garantie jusqu’à 24 mois comme chez Apple mais jusqu’à 70% moins chers.",
+      "iconPackage": "Fa",
+      "icon": "FaTools"
+    },
+    {
+      "title": "Service client 7j/7",
+      "description": "Vous hésitez sur un iPhone ? Vous avez un problèmes avec un iPhone ? On vous répond tous les jours.",
+      "iconPackage": "Ti",
+      "icon": "TiTime"
+    },
+    {
+      "title": "Trop pressé pour attendre ?",
+      "description": "Utiliser notre service de livraison maison ultra rapide (24h-48h).",
+      "iconPackage": "Tb",
+      "icon": "TbTruckDelivery"
+    }
+  ]
+}

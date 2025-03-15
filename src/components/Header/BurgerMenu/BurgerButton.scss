@@ -1,0 +1,30 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/breakpoint.scss';
+
+.burgerMenuButton {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: v.$textColor-header;
+
+  &-home {
+    color: v.$textColor-header-Home;
+  }
+}
+
+.line {
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  transform-origin: 20px 20px;
+}
+
+.line1.open {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.line2.open {
+  opacity: 0;
+}
+
+.line3.open {
+  transform: translateY(-6px) rotate(-45deg);
+}

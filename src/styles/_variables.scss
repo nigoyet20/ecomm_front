@@ -1,0 +1,45 @@
+//Background color
+$bgColor-White: #fff;
+$bgColor-primary: #090983;
+$bgColor-primary-light: #0d0dcd;
+$bgColor-green-blur: rgb(23, 235, 115, 0.85);
+$bgColor-dark: #0e65a7;
+$btnBg-landing: #178feb;
+
+// text color
+$textColor-primary: #090983;
+$textColor-colorWhite: white;
+$textColor-colorDark: #4f4f4f;
+$textColor-colorDarkTrans1: RGBA(79, 79, 79, 0.3);
+$textColor-colorDarkTrans2: RGBA(79, 79, 79, 0.6);
+$textColor-colorDarkTrans3: RGBA(79, 79, 79, 0.1);
+$textColor-colorDarkTrans4: RGBA(79, 79, 79, 0.2);
+$textColor-colorDarkTrans5: RGBA(79, 79, 79, 0.8);
+$textColor-colorwhite: white;
+$textColor-colorBlack: black;
+$textColor-colorLightGray: #f7f7f7;
+$textColor-colorLightGrayTrans: RGBA(247, 247, 247, 0.3);
+$textColor-colorLightGrayTrans2: RGBA(247, 247, 247, 0.6);
+$textColor-colorGray: gray;
+$textColor-header-Home: white;
+$textColor-header: black;
+$textColor-other: #f5a623;
+$textColor-error: red;
+$textColor-success: #017a18;
+$textColor-warning: #b85d0c;
+
+// shadow color
+$shadowColor: 2px 2px 2px 0px rgba(255, 255, 255, 0.5);
+$shadowColorWhite: 1px 0px 5px 1px white;
+
+// loader
+$loader-block: #e7e7e7;
+$loader-backgrouond: white;
+$loader-active: 110deg, rgba(227, 227, 227, 0) 0%, rgba(227, 227, 227, 0) 40%, rgba(227, 227, 227, 0.5) 50%, rgba(227, 227, 227, 0) 60%, rgba(227, 227, 227, 0) 100%;
+
+// font
+@font-face {
+  font-family: 'Wallpoet';
+  src: url('/font/wallpoet/Wallpoet-Regular.ttf') format('truetype');
+  font-display: swap;
+}

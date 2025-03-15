@@ -1,0 +1,341 @@
+@use '../../styles/variables' as v;
+@use '../../styles/breakpoint.scss';
+
+.header {
+  position: relative;
+  width: 90%;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-self: center;
+  padding: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  color: v.$textColor-header;
+  z-index: 3;
+  height: 4.5rem;
+
+  &-home {
+    position: absolute;
+    color: v.$textColor-header-Home;
+  }
+
+  @include breakpoint.media(tablet_xl_mini) {
+    justify-content: space-between;
+  }
+
+  @include breakpoint.media(desktop) {
+    max-width: 1300px;
+  }
+
+  &_burger {
+    order: 1;
+    width: 4rem;
+
+    @include breakpoint.media(tablet_xl_mini) {
+      display: none;
+    }
+  }
+
+  &_logo {
+    order: 2;
+    display: flex;
+    align-items: center;
+    font-family: "Wallpoet", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 3rem;
+
+    @include breakpoint.media(tablet_xl_mini) {
+      order: 1;
+    }
+
+    &_link {
+      text-decoration: none;
+
+      &_text {
+        color: v.$textColor-header;
+
+        &-home {
+          color: v.$textColor-header-Home;
+        }
+      }
+    }
+  }
+
+  &_navbar {
+    display: none;
+    padding: 0;
+    margin: 0;
+
+    @include breakpoint.media(tablet_xl_mini) {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      list-style-type: none;
+      gap: 1.5rem;
+      order: 2;
+      font-weight: 700;
+    }
+
+    @include breakpoint.media(desktop) {
+      gap: 3rem;
+    }
+
+    &_link {
+      text-decoration: none;
+      color: v.$textColor-header;
+
+      &-active {
+        color: v.$textColor-other;
+        ;
+      }
+
+      &-home {
+        color: v.$textColor-header-Home;
+      }
+    }
+  }
+
+  &_profile {
+    order: 3;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    width: 4rem;
+
+    &_links {
+      position: relative;
+      color: v.$textColor-header;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+
+      &_cartcount {
+        position: absolute;
+        top: 0;
+        background-color: v.$textColor-colorDark;
+        color: v.$bgColor-White;
+        border-radius: 50%;
+        padding: 0rem 0.3rem;
+        font-size: 0.6rem;
+      }
+
+      &-home {
+        color: v.$textColor-header-Home;
+      }
+    }
+  }
+
+  &-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+    width: 90%;
+    height: 4.5rem;
+    justify-self: center;
+
+    @include breakpoint.media(tablet_mini) {
+      max-width: 1300px;
+    }
+
+    &_burger {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @include breakpoint.media(tablet_xl_mini) {
+        display: none;
+      }
+    }
+
+    &_left {
+      display: flex;
+      flex-direction: row;
+      gap: 2.5rem;
+      align-items: center;
+      padding: 0;
+      list-style: none;
+
+      &_logo {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translateX(-50%);
+        font-family: "Wallpoet", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 3rem;
+        text-decoration: none;
+        color: v.$textColor-header;
+
+        a {
+          text-decoration: none;
+          color: v.$textColor-header;
+        }
+
+        @include breakpoint.media(tablet_xl_mini) {
+          left: 0;
+          position: relative;
+          transform: translateX(0);
+        }
+      }
+
+      &_link {
+        display: none;
+
+        @include breakpoint.media(tablet_xl_mini) {
+          display: flex;
+          text-decoration: none;
+          color: v.$textColor-header;
+          font-size: 1rem;
+          font-weight: 300;
+
+          &-active {
+            text-decoration: underline;
+            font-weight: 500;
+          }
+        }
+
+        &-cart {
+          text-decoration: none;
+          border: none;
+          background-color: transparent;
+          color: v.$textColor-header;
+          font-size: 1rem;
+          font-weight: 300;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &_right {
+      display: none;
+
+      @include breakpoint.media(tablet_xl_mini) {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+        gap: 0.4rem;
+        align-items: center;
+        height: 60%;
+
+        padding: 0 1rem;
+
+        &_container {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 0.5rem;
+          cursor: pointer;
+          padding: 0.5rem;
+          border-radius: 10px;
+
+          &_icon {
+            transition: transform 0.3s;
+            transform: rotate(0deg);
+
+            &-open {
+              transform: rotate(180deg);
+            }
+          }
+
+          &:hover {
+            background-color: v.$textColor-colorLightGray;
+          }
+        }
+
+        &_popup {
+          position: absolute;
+          top: 4.5rem;
+          right: 0;
+          display: none;
+          flex-direction: column;
+          padding: 0rem 1rem;
+          background-color: v.$bgColor-White;
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+          transform: translate(-1rem, -1rem);
+          width: 300px;
+          gap: 0.5rem;
+          border-radius: 5px;
+          z-index: 1;
+          height: 0px;
+          transition: height 0.3s, padding 0.5s;
+          overflow: hidden;
+
+          &-open {
+            display: flex;
+            height: 0px;
+            padding: 0rem 1rem;
+          }
+
+          &-open-active {
+            display: flex;
+            height: 185px;
+            padding: 1rem 1rem;
+          }
+
+          &-exit {
+            display: flex;
+            height: 185px;
+            padding: 1rem 1rem;
+          }
+
+          &-exit-active {
+            display: flex;
+            height: 0px;
+            padding: 0rem 1rem;
+          }
+
+          &-close {
+            display: none;
+          }
+
+          &_header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1rem;
+            color: v.$textColor-colorDark;
+            border-bottom: solid 1px v.$textColor-colorLightGray;
+            padding-bottom: 0.5rem;
+
+            &_email {
+              font-weight: 500;
+              font-size: 0.9rem;
+            }
+          }
+
+          &_content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-wrap: nowrap;
+
+            &_link {
+              text-decoration: none;
+              color: v.$textColor-colorBlack;
+              background-color: transparent;
+              border: none;
+              text-align: left;
+              cursor: pointer;
+
+              &-active {
+                text-decoration: underline;
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.popup {
+  position: absolute;
+  bottom: 0;
+}

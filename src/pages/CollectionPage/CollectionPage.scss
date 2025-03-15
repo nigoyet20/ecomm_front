@@ -1,0 +1,130 @@
+@use '../../styles/breakpoint.scss';
+@use '../../styles/variables' as v;
+
+.collectionPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  &_title {
+    display: flex;
+    width: 100%;
+    height: 4rem;
+    justify-content: center;
+    align-items: center;
+    background-color: v.$bgColor-primary;
+    text-align: center;
+    color: v.$textColor-colorWhite;
+  }
+
+  &_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2%;
+    width: 100%;
+
+    @include breakpoint.media('tablet_xl_mini') {
+      padding: 0 10%;
+    }
+
+    &_filter {
+      display: none;
+
+      @include breakpoint.media('tablet_xl_mini') {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 20%;
+        width: 20%;
+      }
+
+      &_title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        padding: 2rem 0 1rem 0;
+      }
+
+      &_available {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+        border-top: solid 1px v.$textColor-colorDarkTrans4;
+      }
+
+      &_price {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 0;
+        border-top: solid 1px v.$textColor-colorDarkTrans4;
+        border-bottom: solid 1px v.$textColor-colorDarkTrans4;
+        height: 57px;
+        transition: height 0.5s;
+
+        &-open {
+          height: 215px;
+        }
+
+        &_container {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+
+          &_icon {
+            transition: transform 0.3s;
+            transform: rotate(0deg);
+            cursor: pointer;
+            border-radius: 50px;
+
+            &:hover {
+              background-color: v.$textColor-colorDarkTrans3;
+            }
+
+            &-open {
+              transform: rotate(-180deg);
+            }
+          }
+        }
+      }
+    }
+
+    &_collection {
+      @include breakpoint.media('tablet_xl_mini') {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 70%;
+        width: 70%;
+      }
+    }
+
+    @include breakpoint.media('tablet_xl_mini') {
+      flex-direction: row;
+    }
+  }
+
+  &_filterButton {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: v.$bgColor-primary;
+    color: v.$textColor-colorWhite;
+    border: none;
+    bottom: 1rem;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.2);
+
+    @include breakpoint.media('tablet_xl_mini') {
+      display: none;
+    }
+  }
+}

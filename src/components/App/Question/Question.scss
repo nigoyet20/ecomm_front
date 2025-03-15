@@ -1,0 +1,132 @@
+@use '../../../styles/breakpoint.scss';
+@use '../../../styles/variables' as v;
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+  gap: 1rem;
+
+  @include breakpoint.media(desktop) {
+    margin: 0 10%;
+    margin-top: 5%;
+  }
+
+  &_intro {
+    font-size: 0.7rem;
+    color: v.$textColor-colorDark;
+    font-weight: 700;
+    padding: 0 1rem;
+  }
+
+  &_title {
+    padding: 0 1rem;
+  }
+
+  &_description {
+    padding: 0 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: v.$textColor-colorDark;
+  }
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0 1rem;
+    margin-top: 1rem;
+
+    &_item {
+      display: flex;
+      flex-direction: column;
+      background-color: v.$textColor-colorLightGray;
+      padding: 0.8rem;
+      border-radius: 10px;
+
+      &_title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+
+        &_text {
+          display: flex;
+          align-items: center;
+          font-size: 0.8rem;
+          font-weight: 700;
+          width: 90%;
+        }
+
+        &_icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-left: 1rem;
+          transition: transform 0.2s ease-in;
+
+          &-open {
+            transform: rotate(180deg);
+          }
+        }
+
+      }
+
+      &_text {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        max-height: 0px;
+        transition: max-height 0.3s ease-in;
+
+        &_open {
+          max-height: 1000px;
+        }
+
+        &_item {
+          font-size: 0.8rem;
+          color: v.$textColor-colorDark;
+          margin-top: 1rem;
+          white-space: pre-line;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .customer_service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 1rem;
+    padding: 0 1rem;
+    text-align: center;
+
+    @include breakpoint.media(desktop) {
+      margin-top: 5%;
+    }
+
+    &_hourly {
+      color: v.$textColor-colorBlack;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    &_delay {
+      color: v.$textColor-colorDark;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    &_button {
+      background-color: v.$bgColor-primary;
+      color: v.$textColor-colorWhite;
+      border: none;
+      padding: 1rem;
+      border-radius: 30px;
+    }
+  }
+}

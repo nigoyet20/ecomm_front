@@ -1,0 +1,132 @@
+@use '../../../styles/breakpoint.scss';
+@use '../../../styles/variables' as v;
+
+
+.inputModif {
+  position: relative;
+  flex-basis: 70%;
+  border: solid 1px v.$textColor-colorLightGrayTrans;
+  border-radius: 5px;
+  padding: 0.6rem 0 0 0;
+  transition: border 0.1s ease-in-out;
+
+  @include breakpoint.media(tablet_xl_mini) {
+    margin-bottom: 0;
+  }
+
+  &-focus {
+    border: solid 1px v.$textColor-colorLightGray;
+  }
+
+  &_input {
+    position: relative;
+    background-color: transparent;
+    color: v.$textColor-colorWhite;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    font-size: 1.2rem;
+    z-index: 2;
+
+    &-disabled {
+      background-color: v.$textColor-colorLightGrayTrans;
+      color: v.$textColor-colorDarkTrans2;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &_input:focus~&_label,
+  &_input:not(:placeholder-shown)~&_label {
+    top: 10%;
+    transform: translateY(0);
+    font-size: 0.7rem;
+    color: v.$textColor-colorLightGrayTrans;
+  }
+
+  &_label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    font-weight: 400;
+    color: v.$textColor-colorWhite;
+    padding: 0 1rem;
+    transition: all 0.2s ease-in-out;
+    z-index: 0;
+  }
+}
+
+.inputModifWhite {
+  position: relative;
+  flex-basis: 70%;
+  border: solid 1px v.$textColor-colorDarkTrans4;
+  border-radius: 5px;
+  padding: 0.6rem 0 0 0;
+  transition: border 0.1s ease-in-out;
+
+  @include breakpoint.media(tablet_xl_mini) {
+    margin-bottom: 0;
+  }
+
+  &-focus {
+    border: solid 1px v.$textColor-colorBlack;
+  }
+
+  &_input {
+    position: relative;
+    background-color: transparent;
+    color: v.$textColor-colorBlack;
+    border: none;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    font-size: 1.2rem;
+    z-index: 2;
+
+    &-disabled {
+      background-color: v.$textColor-colorLightGrayTrans;
+      color: v.$textColor-colorDarkTrans2;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &_input:focus~&_label,
+  &_input:not(:placeholder-shown)~&_label {
+    top: 10%;
+    transform: translateY(0);
+    font-size: 0.7rem;
+    color: v.$textColor-colorDark;
+  }
+
+  &_input:focus~&_label-textarea,
+  &_input:not(:placeholder-shown)~&_label-textarea {
+    top: 4%;
+    transform: translateY(0);
+    font-size: 0.7rem;
+    color: v.$textColor-colorDark;
+  }
+
+  &_label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    font-weight: 400;
+    color: v.$textColor-colorDarkTrans2;
+    padding: 0 1rem;
+    transition: all 0.2s ease-in-out;
+    z-index: 0;
+
+    &-textarea {
+      top: 12%;
+      transform: translateY(0);
+    }
+  }
+}

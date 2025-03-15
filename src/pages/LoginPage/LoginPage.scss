@@ -1,0 +1,425 @@
+@use '../../styles/breakpoint.scss';
+@use '../../styles/variables' as v;
+
+.checking,
+.login,
+.signup {
+  &_transi {
+    &-enter {
+      transform: translateX(100vw);
+    }
+
+    &-enter-active {
+      transform: translateX(0);
+    }
+
+    &-enter-done {
+      transform: translateX(0);
+    }
+
+    &-exit {
+      transform: translateX(0);
+    }
+
+    &-exit-active {
+      transform: translateX(-100vw);
+    }
+
+    &-exit-done {
+      transform: translateX(-100vw);
+    }
+
+    &-enter-active,
+    &-exit-active {
+      transition: transform .3s;
+    }
+  }
+
+  @include breakpoint.media('tablet_mini') {
+    &_transi {
+      &-enter {
+        transform: translateX(25vw);
+        opacity: 0;
+      }
+
+      &-enter-active {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      &-enter-done {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      &-exit {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      &-exit-active {
+        transform: translateX(-25vw);
+        opacity: 0;
+      }
+
+      &-exit-done {
+        transform: translateX(-25vw);
+        opacity: 0;
+      }
+
+      &-enter-active,
+      &-exit-active {
+        transition: transform .3s, opacity .3s ease;
+      }
+    }
+  }
+}
+
+.container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.checking {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+
+  @include breakpoint.media('tablet_mini') {
+    min-width: 400px;
+    max-width: 500px;
+  }
+
+  &_title {
+    font-size: 4.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-family: 'Wallpoet', sans-serif;
+  }
+
+  &_form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 90%;
+
+    &_title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    &_mailLabel {
+      font-size: 1rem;
+      color: v.$textColor-colorDark;
+    }
+
+    &_mailInput {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.1s ease-in;
+      border: solid 2px v.$textColor-colorDarkTrans1;
+
+      &:focus {
+        border: solid 2px v.$bgColor-primary;
+      }
+    }
+
+    &_errors {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+
+      &_error {
+        position: absolute;
+        top: 0.5rem;
+        left: 0;
+        font-size: 0.8rem;
+        color: v.$textColor-error;
+
+        &-signup {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 1rem;
+          position: relative;
+          color: v.$textColor-error;
+
+          &-ok {
+            color: v.$textColor-success;
+          }
+        }
+      }
+
+      &-signup {
+        top: 0;
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    &_passwordLost {
+      font-size: 0.8rem;
+      width: 90%;
+      margin-top: 2rem;
+
+      &_text {
+        border: none;
+        text-decoration: none;
+        background-color: transparent;
+        color: v.$textColor-colorDark;
+        cursor: pointer;
+        padding: 0;
+      }
+    }
+
+    &_mailLabel {
+      font-size: 1rem;
+      color: v.$textColor-colorDark;
+    }
+
+    &_mailInput {
+      width: 100%;
+      padding: 0.5rem 0.6rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.1s ease-in;
+      border: solid 2px v.$textColor-colorDarkTrans1;
+
+      &:focus {
+        border: solid 2px v.$bgColor-primary;
+      }
+    }
+
+    &_passwordSignin {
+      border: none;
+      padding: 0;
+      margin-bottom: 0;
+
+      &_label {
+        font-size: 1rem;
+        color: v.$textColor-colorDark;
+      }
+
+      &_input {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        &_value {
+          width: 100%;
+          padding: 0.5rem 0.6rem;
+          border-radius: 0.5rem;
+          font-size: 1rem;
+          outline: none;
+          transition: border 0.1s ease-in;
+          border: solid 2px v.$textColor-colorDarkTrans1;
+        }
+
+        &_infos {
+          position: absolute;
+          display: flex;
+          flex-direction: row;
+          top: 50%;
+          right: 2%;
+          transform: translateY(-50%);
+
+          &_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            z-index: 5;
+          }
+        }
+
+        &:focus {
+          border: solid 2px v.$bgColor-primary;
+        }
+      }
+    }
+
+    &_password {
+      border: none;
+      padding: 0;
+      margin-bottom: 0;
+
+      &_label {
+        font-size: 1rem;
+        color: v.$textColor-colorDark;
+      }
+
+      &_input {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        &_value {
+          width: 100%;
+          padding: 0.5rem 0.6rem;
+          border-radius: 0.5rem;
+          font-size: 1rem;
+          outline: none;
+          transition: border 0.1s ease-in;
+          border: solid 2px v.$textColor-colorDarkTrans1;
+        }
+
+        &_infos {
+          position: absolute;
+          display: flex;
+          flex-direction: row;
+          top: 50%;
+          right: 2%;
+          transform: translateY(-50%);
+
+          &_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            z-index: 5;
+          }
+        }
+
+        &:focus {
+          border: solid 2px v.$bgColor-primary;
+        }
+      }
+    }
+
+    &_passwordConfirm {
+      border: none;
+      padding: 0;
+
+      &_label {
+        font-size: 1rem;
+        color: v.$textColor-colorDark;
+      }
+
+      &_input {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        &_value {
+          width: 100%;
+          padding: 0.5rem 0.6rem;
+          border-radius: 0.5rem;
+          font-size: 1rem;
+          outline: none;
+          transition: border 0.1s ease-in;
+          border: solid 2px v.$textColor-colorDarkTrans1;
+        }
+
+        &_infos {
+          position: absolute;
+          display: flex;
+          flex-direction: row;
+          top: 50%;
+          right: 2%;
+          transform: translateY(-50%);
+
+          &_btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            z-index: 5;
+          }
+        }
+
+        &:focus {
+          border: solid 2px v.$bgColor-primary;
+        }
+      }
+
+      &_error {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+        color: v.$textColor-error;
+
+        &-ok {
+          color: v.$textColor-success;
+        }
+      }
+    }
+
+    &_submit {
+      border: none;
+      background-color: transparent;
+    }
+  }
+
+  &_bottom {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    margin-top: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    z-index: 1;
+
+    &_back {
+      position: relative;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: v.$textColor-colorDark;
+      cursor: pointer;
+
+      &-hidden {
+        opacity: 0;
+      }
+    }
+
+    &_conf {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: v.$textColor-colorDark;
+    }
+  }
+
+  &_popup {
+    position: absolute;
+    bottom: 2%;
+    background-color: v.$bgColor-primary;
+    color: v.$textColor-colorWhite;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    width: 90%;
+
+    @include breakpoint.media('tablet_mini') {
+      position: relative;
+      margin-top: 2rem;
+    }
+  }
+
+}
