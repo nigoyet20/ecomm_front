@@ -1,0 +1,8 @@
+@use '../../styles/breakpoint.scss';
+@use '../../styles/variables' as v;
+
+.loadingPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

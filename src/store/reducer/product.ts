@@ -17,8 +17,6 @@ const productSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(actionCheckProduct.fulfilled, (state, action) => {
-      console.log(action.payload);
-      
       const products = action.payload;
       if (products && products.length !== 0) {
         const escapedProducts = products.map((product: ProductI) => ({
