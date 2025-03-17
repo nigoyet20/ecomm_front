@@ -7,7 +7,6 @@ import { Suspense, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { actionCheckToken } from '../store/thunks/checkLogin';
 import { AdminRoute, NonPrivateRoute, PrivateRoute } from '../components/App/PrivateRoute/PrivateRoute';
-import SpinnerSquare from '../components/App/SpinnerSquare/SpinnerSquare';
 import { lazy } from "react";
 import { useModalsWithBackButton } from "../hooks/useModalsWithBackButton.ts";
 import ContactPage from "./ContactPage/ContactPage.tsx";
@@ -18,6 +17,7 @@ import PaymentPage from "./PaymentPage/PaymentPage.tsx";
 import PanelPage from "./PanelPage/PanelPage.tsx";
 import DiscountPage from "./DiscountPage/DiscountPage.tsx";
 import Order from "./ProfilePage/Order/Order.tsx";
+import LoadingPage from './LoadingPage/LoadingPage.tsx';
 
 const HomePage = lazy(() => import('./HomePage/HomePage.tsx'));
 const ProductPage = lazy(() => import('./ProductPage/ProductPage.tsx'));
@@ -59,7 +59,7 @@ function App() {
   return (
     <div className="app">
 
-      <Suspense fallback={<SpinnerSquare isOpen={true} />}>
+      <Suspense fallback={<LoadingPage />}>
         {!noHeaderPage && <Header isAuthentificated={isAuthentificated} email={account.email} account_id={account.id} />}
         <ScrollToTop />
 
@@ -79,6 +79,7 @@ function App() {
           <Route path="/confirmation" element={<ConfirmationPage />} />
           <Route path="/discount" element={<AdminRoute isAuthenticated={isAuthentificated}>{<DiscountPage />}</AdminRoute>} />
           <Route path="/panel" element={<AdminRoute isAuthenticated={isAuthentificated}>{<PanelPage />}</AdminRoute>} />
+          <Route path="/loading" element={<LoadingPage />} />
         </Routes>
 
         {!noFooterPage && <Footer />}
