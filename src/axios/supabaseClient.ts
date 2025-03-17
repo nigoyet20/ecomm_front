@@ -84,10 +84,14 @@ export const updateRequest = async ({ id, status, code }: NotificationI) => {
 }
 
 export const deleteNotification = async (id: number) => {
-  await supabase
+  const { error } = await supabase
     .from("notification")
     .delete()
     .eq("id", id);
+
+    if (error) 
+      return false;
+     else return true;
 };
 
 export const handleUnload = async (id: number) => {
