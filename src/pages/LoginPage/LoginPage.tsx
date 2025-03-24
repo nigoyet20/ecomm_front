@@ -213,7 +213,7 @@ function LoginPage() {
     if (credentials.password === credentials.passwordConfirm) {
       const result = await dispatch(actionCheckSignup());
       if (actionCheckSignup.fulfilled.match(result)) {
-        setPopupMessage("Merci de confirmer votre adresse mail avec le mail envoyé");
+        setPopupMessage("Un email de confirmation vous a été envoyé. (Consultez vos spams)");
       }
     }
   }
