@@ -91,7 +91,7 @@ function AffiliationPage() {
   const handleInfosChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
 
-    if (name === "phone" && !isNumeric(value))
+    if ((name === "phone" && !isNumeric(value)) || (name === "phone" && value.length > 10))
       return
 
     setInfosInput((prev) => ({
