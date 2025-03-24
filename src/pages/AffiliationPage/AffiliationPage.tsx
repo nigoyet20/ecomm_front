@@ -73,7 +73,7 @@ function AffiliationPage() {
     }
 
   };
-
+  
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     if (name === "email" || name === "password")
@@ -328,12 +328,12 @@ function AffiliationPage() {
           <h3>{cniRecto && cniVerso && <FcOk color='green' size={20} />}Carte d'identité</h3>
           <div className='affiliationPage_part_upload'>
             <span>Recto: </span>
-            <label htmlFor="cniRecto" className='affiliationPage_part_upload_fileCustom'><RiUpload2Fill size={18} />Choisir le fichier</label>
+            <label htmlFor="cniRecto" className='affiliationPage_part_upload_fileCustom'><RiUpload2Fill size={18} />{cniRecto?.name ? cniRecto?.name : "Choisir le fichier"}</label>
             <input id='cniRecto' type="file" name='cniRecto' onChange={handleFileChange} className='affiliationPage_part_upload_file' />
           </div>
           <div className='affiliationPage_part_upload'>
             <span>Verso: </span>
-            <label htmlFor="cniVerso" className='affiliationPage_part_upload_fileCustom'><RiUpload2Fill size={18} />Choisir le fichier</label>
+            <label htmlFor="cniVerso" className='affiliationPage_part_upload_fileCustom'><RiUpload2Fill size={18} />{cniRecto?.name ? cniVerso?.name : "Choisir le fichier"}</label>
             <input id='cniVerso' type="file" name='cniVerso' onChange={handleFileChange} className='affiliationPage_part_upload_file' />
           </div>
         </div>
@@ -342,7 +342,7 @@ function AffiliationPage() {
           <div className='affiliationPage_part_upload'>
             <h3>{siret && <FcOk color='green' size={20} />}Numéro de SIRET</h3>
             <span>Extrait KBIS </span>
-            <label htmlFor="siret" className='affiliationPage_part_upload_fileCustom'><RiUpload2Fill size={18} />Choisir le fichier</label>
+            <label htmlFor="siret" className='affiliationPage_part_upload_fileCustom'><RiUpload2Fill size={18} />{cniRecto?.name ? siret?.name : "Choisir le fichier"}</label>
             <input id='siret' type="file" name='siret' onChange={handleFileChange} className='affiliationPage_part_upload_file' />
           </div> 
         </div>
@@ -351,7 +351,7 @@ function AffiliationPage() {
           <div className='affiliationPage_part_upload'>
             <h3>{rib && <FcOk color='green' size={20} />}RIB</h3>
             <span>RIB: </span>
-            <label htmlFor="rib" className='affiliationPage_part_upload_fileCustom'><RiUpload2Fill size={18} />Choisir le fichier</label>
+            <label htmlFor="rib" className='affiliationPage_part_upload_fileCustom'><RiUpload2Fill size={18} />{cniRecto?.name ? rib?.name : "Choisir le fichier"}</label>
             <input id='rib' type="file" name='rib' onChange={handleFileChange} className='affiliationPage_part_upload_file' />
           </div>
         </div>
