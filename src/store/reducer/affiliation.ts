@@ -17,7 +17,8 @@ export const initialState: AffiliationStateI = {
     email: '',
     password: '',
     validEmail: false,
-    validPassword: false
+    validPassword: false,
+    error: ''
   },
   pending: {
     signin: false
@@ -70,6 +71,7 @@ const affiliationSlice = createSlice({
     builder.addCase(actionSigninAffiliation.rejected, (state) => {
       state.isAuthentificated = false
       state.pending.signin = false;
+      state.affiliationInput.error = "Email ou mot de passe invalide"
     });
     builder.addCase(actionCreateAccountAffiliation.fulfilled, (state, action) => {   
       state.affiliationList.push(action.payload.newAccount)

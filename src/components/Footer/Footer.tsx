@@ -1,6 +1,4 @@
 import './Footer.scss'
-import { IoLogoInstagram, IoLogoTiktok, IoLogoWhatsapp } from "react-icons/io5";
-import { BiLogoSnapchat } from "react-icons/bi";
 import { FaCcVisa, FaCcMastercard, FaCcAmex } from "react-icons/fa6";
 import { TbMailCheck } from "react-icons/tb";
 import Input from '../App/Input/Input';
@@ -52,12 +50,6 @@ function Footer() {
             <span className="footer_links_contact_content_item">WhatsApp: +33 {import.meta.env.VITE_PHONE}</span>
             <span className="footer_links_contact_content_item">Email: {import.meta.env.VITE_EMAIL}</span>
           </div>
-        </div>
-        <div className="footer_links_social">
-          <IoLogoInstagram size={25} />
-          <IoLogoTiktok size={25} />
-          <BiLogoSnapchat size={25} />
-          <IoLogoWhatsapp size={25} />
         </div>
         <div className="footer_links_paiement">
           <FaCcVisa size={30} />

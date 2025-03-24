@@ -197,6 +197,7 @@ function AffiliationPage() {
         <input type="text" placeholder='E-mail' className='affiliationPage_form_input' name='email' value={affiliationInput.email} onChange={handleInputChange} />
         <input type="password" placeholder='Mot de passe' className='affiliationPage_form_input' name='password' value={affiliationInput.password} onChange={handleInputChange} />
         <ButtonLoader type='submit' disabled={validEmail && validPassword} text='Continuer' isLoading={isPending} />
+        <span className='affiliationPage_form_error'>{affiliationInput.error}</span>
       </form>
     </div>
   )

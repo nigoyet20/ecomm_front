@@ -127,6 +127,10 @@
       border: solid 2px v.$textColor-colorDarkTrans1;
     }
 
+    &_error {
+      color: v.$textColor-error;
+    }
+
     &_submit {
       margin-top: 2rem;
       border: none;
