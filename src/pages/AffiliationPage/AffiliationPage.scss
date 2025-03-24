@@ -111,6 +111,7 @@
     width: 90%;
     max-width: 600px;
     gap: 1rem;
+    margin-bottom: 1rem;
 
     &_title {
       font-size: 1rem;
@@ -127,7 +128,16 @@
     }
 
     &_submit {
+      margin-top: 2rem;
+      border: none;
+      background-color: v.$textColor-primary;
+      color: white;
+      padding: .5rem 0;
+      border-radius: 3px;
 
+      &:disabled {
+        background-color: v.$textColor-colorDarkTrans1;
+      }
     }
   }
 
@@ -196,24 +206,6 @@
         background-color: v.$textColor-colorDarkTrans3;
         gap: .3rem;
         padding: .5rem 0;
-  }
-
-  &_form {
-    width: 90%;
-    margin-bottom: 1rem;
-
-    &_title {
-      margin-bottom: 2rem;
-    }
-
-    &_submit {
-      margin-top: 2rem;
-      border: none;
-      background-color: v.$textColor-primary;
-      color: white;
-      padding: .5rem 0;
-      border-radius: 3px;
-    }
   }
 
   &_part {

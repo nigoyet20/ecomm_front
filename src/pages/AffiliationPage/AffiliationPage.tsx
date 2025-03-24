@@ -15,6 +15,7 @@ import { actionChangeFilesSended, actionChangeInput } from '../../store/reducer/
 import { AccountAffiliationI } from '../../@types/affiliation';
 import Input from '../../components/App/Input/Input';
 import Checkbox from '../../components/App/Checkbox/Checkbox';
+import { isNumeric } from '../../utils/regexValidator';
 
 function AffiliationPage() {
   const dispatch = useAppDispatch();
@@ -89,6 +90,9 @@ function AffiliationPage() {
 
   const handleInfosChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type, checked } = e.target as HTMLInputElement;
+
+    if (name === "phone" && !isNumeric(value))
+      return
 
     setInfosInput((prev) => ({
       ...prev,

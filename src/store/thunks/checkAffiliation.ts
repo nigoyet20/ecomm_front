@@ -20,6 +20,7 @@ const actionSigninAffiliation = createAsyncThunk<AffiliationResponse>(
       
       return response.data;
     } catch (error) {
+      console.log(error);
       const axiosError = error as AxiosError;
       return thunkAPI.rejectWithValue(axiosError.response?.data as RejectPayload);
     }
@@ -34,8 +35,6 @@ const actionSendFilesAffiliation = createAsyncThunk<
   "affiliation/sendFiles",
   async (payload, thunkAPI) => {
     try {
-      const state = thunkAPI.getState() as RootState;
-      
       const response = await axiosInstance.post("/affiliation-files", payload, {
         timeout: 30000
       });
