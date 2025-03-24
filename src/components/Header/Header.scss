@@ -15,6 +15,10 @@
   z-index: 3;
   height: 4.5rem;
 
+  &-affiliation {
+    justify-content: center;
+  }
+
   &-home {
     position: absolute;
     color: v.$textColor-header-Home;
@@ -22,6 +26,10 @@
 
   @include breakpoint.media(tablet_xl_mini) {
     justify-content: space-between;
+
+    &-affiliation {
+      justify-content: center;
+    }
   }
 
   @include breakpoint.media(desktop) {

@@ -3,6 +3,11 @@ export interface changeCredentialsPayload {
   value: string;
 }
 
+export interface changeCredentialsAffiliationPayload {
+  name: 'email' | 'password';
+  value: string;
+}
+
 export interface changeInputDiscountPayload {
   name: 'code' | 'discount';
   value: string;

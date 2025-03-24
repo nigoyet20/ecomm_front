@@ -119,6 +119,16 @@ function Header({ isAuthentificated, email, account_id }: HeaderI) {
   const mainPageClick = () => {
     dispatch(closeAllModal());
   }
+  
+  if (location.pathname === '/affiliation') return (
+    <div className='header header-affiliation'>
+      <div className="header_logo">
+        <div className="header_logo_link" aria-label="Accueil">
+          <span className='header_logo_link_text'>ODP</span>
+        </div>
+      </div>
+    </div>
+  )
 
   return (
     <>

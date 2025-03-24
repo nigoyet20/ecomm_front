@@ -18,6 +18,7 @@ import PanelPage from "./PanelPage/PanelPage.tsx";
 import DiscountPage from "./DiscountPage/DiscountPage.tsx";
 import Order from "./ProfilePage/Order/Order.tsx";
 import LoadingPage from './LoadingPage/LoadingPage.tsx';
+import AffiliationPage from './AffiliationPage/AffiliationPage.tsx';
 
 const HomePage = lazy(() => import('./HomePage/HomePage.tsx'));
 const ProductPage = lazy(() => import('./ProductPage/ProductPage.tsx'));
@@ -38,7 +39,8 @@ function App() {
     location.pathname === '/checkout' ||
     location.pathname === '/panel' ||
     location.pathname === '/discount' ||
-    location.pathname === '/payment';
+    location.pathname === '/payment' ||
+    location.pathname === '/affiliation';
   const isAuthentificated = useAppSelector((state) => state.account.isAuthentificated);
   const account = useAppSelector((state) => state.account.account);
   const burgerMenuIsOpen = useAppSelector((state) => state.ModalMenu.modals.burgerModalIsOpen);
@@ -79,7 +81,7 @@ function App() {
           <Route path="/confirmation" element={<ConfirmationPage />} />
           <Route path="/discount" element={<AdminRoute isAuthenticated={isAuthentificated}>{<DiscountPage />}</AdminRoute>} />
           <Route path="/panel" element={<AdminRoute isAuthenticated={isAuthentificated}>{<PanelPage />}</AdminRoute>} />
-          <Route path="/loading" element={<LoadingPage />} />
+          <Route path="/affiliation" element={<AffiliationPage />} />
         </Routes>
 
         {!noFooterPage && <Footer />}

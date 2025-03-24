@@ -5,6 +5,7 @@ import cartSlice from './cart';
 import orderSlice from './order';
 import discountSlice from "./discount";
 import notificationSlice from "./notification";
+import affiliationSlice from "./affiliation"
 
 const reducer = {
   account: accountSlice,
@@ -14,6 +15,7 @@ const reducer = {
   order: orderSlice,
   discount: discountSlice,
   notification: notificationSlice,
+  affiliation: affiliationSlice,
 };
 
 export default reducer;
