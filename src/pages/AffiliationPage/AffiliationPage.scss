@@ -27,13 +27,19 @@
 
     &_body {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
 
       &_account {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
         width: 100%;
+
+        &_top {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          width: 100%;
+        }
 
         &_btns {
           display: flex;
@@ -89,6 +95,21 @@
         right: 0;
         border: none;
         background-color: transparent;
+      }
+    }
+
+    &_infosModal {
+      display: flex;
+      flex-direction: column;
+
+      &_imgs {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        li {
+          list-style: none;
+        }
       }
     }
   }

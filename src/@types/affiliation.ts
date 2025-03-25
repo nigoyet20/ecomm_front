@@ -1,5 +1,7 @@
+import { UUID } from "crypto";
 
 export interface AffiliationStateI {
+  id: UUID | null;
   isAuthentificated: boolean,
   filesSended: boolean,
   isAdmin: boolean,
@@ -16,7 +18,12 @@ export interface AffiliationStateI {
   },
   pending: {
     signin: boolean;
+    getInfos: boolean
+  },
+  modal: {
+    infos: boolean
   }
+  accountTarget: AccountTargetAffiliationI
 }
 
 
@@ -24,7 +31,25 @@ export interface AccountAffiliationI {
   id: number,
   email: string,
   password: string,
-  filesSended: boolean
+  filesSended: boolean,
+  firstname?: string,
+  lastname?: string,
+  address?: string,
+  phone?: string,
+  insta?: string,
+  tiktok?: string,
+  facebook?: string
+}
+
+export interface AccountTargetAffiliationI {
+  firstname?: string,
+  lastname?: string,
+  address?: string,
+  phone?: string,
+  insta?: string,
+  tiktok?: string,
+  facebook?: string,
+  files: string[] | []
 }
 
 export interface AccountAffiliationPayloadCreateI {
@@ -44,11 +69,15 @@ export interface AccountAffiliationPayloadResponsePatchI {
   updatedAccount: AccountAffiliationI
 }
 
+export interface AccountAffiliationPayloadResponseGetI {
+  account: AccountTargetAffiliationI,
+  files: string[]
+}
+
 export interface AffiliationResponse {
   account: {
+    id: UUID,
     email: string,
-    firstname: string,
-    lastname: string
   }
   filesSended: boolean,
   isAdmin: boolean,

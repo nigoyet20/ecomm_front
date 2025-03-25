@@ -2,10 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AffiliationStateI } from '../../@types/affiliation';
 import { changeCredentialsAffiliationPayload } from '../../@types/payload';
 import { escapeHtml } from '../../utils/escapeHtml';
-import { actionChangeAccountAffiliation, actionCreateAccountAffiliation, actionDeleteAccountAffiliation, actionSigninAffiliation } from '../thunks/checkAffiliation';
+import { actionChangeAccountAffiliation, actionCreateAccountAffiliation, actionDeleteAccountAffiliation, actionGetInfosAffiliation, actionSigninAffiliation } from '../thunks/checkAffiliation';
 import { validateEmail, validePassword } from '../../utils/regexValidator';
 
 export const initialState: AffiliationStateI = {
+  id: null,
   isAuthentificated: false,
   filesSended: false,
   isAdmin: false,
@@ -21,7 +22,21 @@ export const initialState: AffiliationStateI = {
     error: ''
   },
   pending: {
-    signin: false
+    signin: false,
+    getInfos: false
+  },
+  accountTarget: {
+    firstname: '',
+    lastname: '',
+    address: '',
+    phone: '',
+    insta: '',
+    tiktok: '',
+    facebook: '',
+    files: []
+  },
+  modal: {
+    infos: false
   }
 };
 
@@ -55,9 +70,13 @@ const affiliationSlice = createSlice({
     actionChangeFilesSended: (state) => {
       state.filesSended = !state.filesSended;
     },
+    actionModalIsOpen: (state) => {
+      state.modal.infos = !state.modal.infos;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(actionSigninAffiliation.fulfilled, (state, action) => {
+      state.id = action.payload.account.id
       state.data.email = action.payload.account.email
       state.isAuthentificated = true
       state.filesSended = action.payload.filesSended
@@ -88,8 +107,14 @@ const affiliationSlice = createSlice({
       )
       state.affiliationList = updatedAccount;
     });
+    builder.addCase(actionGetInfosAffiliation.fulfilled, (state, action) => {
+      state.accountTarget = action.payload.account;
+      state.accountTarget.files = action.payload.files
+      state.pending.getInfos = false;
+      state.modal.infos = true;
+    });
   }
 })
 
-export const { actionChangeInput, actionChangeFilesSended } = affiliationSlice.actions;
+export const { actionChangeInput, actionChangeFilesSended, actionModalIsOpen } = affiliationSlice.actions;
 export default affiliationSlice.reducer;

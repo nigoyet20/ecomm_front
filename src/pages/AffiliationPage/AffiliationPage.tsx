@@ -8,10 +8,15 @@ import { FaPlus } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { FaRegEye } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
+import { IoLogoInstagram } from "react-icons/io";
+import { IoLogoTiktok } from "react-icons/io5";
+import { FaFacebook } from "react-icons/fa";
+
+
 
 import './AffiliationPage.scss'
-import { actionChangeAccountAffiliation, actionCreateAccountAffiliation, actionDeleteAccountAffiliation, actionSendFilesAffiliation, actionSigninAffiliation } from '../../store/thunks/checkAffiliation';
-import { actionChangeFilesSended, actionChangeInput } from '../../store/reducer/affiliation';
+import { actionChangeAccountAffiliation, actionCreateAccountAffiliation, actionDeleteAccountAffiliation, actionGetInfosAffiliation, actionSendFilesAffiliation, actionSigninAffiliation } from '../../store/thunks/checkAffiliation';
+import { actionChangeFilesSended, actionChangeInput, actionModalIsOpen } from '../../store/reducer/affiliation';
 import { AccountAffiliationI } from '../../@types/affiliation';
 import Input from '../../components/App/Input/Input';
 import Checkbox from '../../components/App/Checkbox/Checkbox';
@@ -20,6 +25,7 @@ import { isNumeric } from '../../utils/regexValidator';
 function AffiliationPage() {
   const dispatch = useAppDispatch();
 
+  const id = useAppSelector((state) => state.affiliation.id);
   const isAuthentificated = useAppSelector((state) => state.affiliation.isAuthentificated);
   const isPending = useAppSelector((state) => state.affiliation.pending.signin);
   const validEmail = useAppSelector((state) => state.affiliation.affiliationInput.validEmail);
@@ -29,6 +35,8 @@ function AffiliationPage() {
   const filesSended = useAppSelector((state) => state.affiliation.filesSended);
   const isAdmin = useAppSelector((state) => state.affiliation.isAdmin);
   const affiliationList = useAppSelector((state) => state.affiliation.affiliationList);
+  const accountTarget = useAppSelector((state) => state.affiliation.accountTarget)
+  const modalGetInfosIsOpen = useAppSelector((state) => state.affiliation.modal.infos)
 
   const [contractOpen, setContractOpen] = useState(false);
   const [contractIsSign, setContractIsSign] = useState(false);
@@ -108,6 +116,8 @@ function AffiliationPage() {
 
   const handleSigninSubmit = (event: FormEvent) => {
     event.preventDefault();
+    
+    if (!id) return;
 
     if (cniRecto && cniVerso && cniVerso && rib) {
       const formData = new FormData();
@@ -116,6 +126,7 @@ function AffiliationPage() {
       formData.append("siret", siret as File);
       formData.append("rib", rib as File);
 
+      formData.append("id", id)
       formData.append("email", affiliationInput.email)
       formData.append("password", affiliationInput.password)
 
@@ -153,6 +164,12 @@ function AffiliationPage() {
     dispatch(actionChangeAccountAffiliation(accountUpdated))
   };
 
+  const handleInfosModalIsOpen = (id: number) => {
+    if (modalGetInfosIsOpen === false)
+      dispatch(actionGetInfosAffiliation(id));
+    else dispatch(actionModalIsOpen());
+  }
+
   if (isAdmin) return (
     <div className='affiliationPage'>
       <div className='affiliationPage_admin'>
@@ -164,12 +181,34 @@ function AffiliationPage() {
           {
             affiliationList && affiliationList.length > 0 && affiliationList.map((account) => (
               <div key={account.id} className='affiliationPage_admin_body_account'>
-                <span>{account.email}</span>
-                <div className='affiliationPage_admin_body_account_btns'>
-                  <button className='affiliationPage_admin_body_account_btns_btn' onClick={() => handleDeleteAccount(account.id)}><MdDelete size={25} /></button>
-                  <button className='affiliationPage_admin_body_account_btns_btn' onClick={() => handleChangeAccount(account)}><AiFillSignature color={account.filesSended ? 'green' : 'red'} size={25} /></button>
-                  <span><FaRegEye size={25} /></span>
+                <div className='affiliationPage_admin_body_account_top'>
+                  <span>{account.email}</span>
+                  <div className='affiliationPage_admin_body_account_btns'>
+                    <button className='affiliationPage_admin_body_account_btns_btn' onClick={() => handleDeleteAccount(account.id)}><MdDelete size={25} /></button>
+                    <button className='affiliationPage_admin_body_account_btns_btn' onClick={() => handleChangeAccount(account)}><AiFillSignature color={account.filesSended ? 'green' : 'red'} size={25} /></button>
+                    <span onClick={() => handleInfosModalIsOpen(account.id)}><FaRegEye size={25} /></span>
+                  </div>
                 </div>
+                {
+                  modalGetInfosIsOpen && account.filesSended && accountTarget &&
+                  <div className='affiliationPage_admin_infosModal'>
+                    <span>{accountTarget.firstname} {accountTarget.lastname}</span>
+                    <span>{accountTarget.address}</span>
+                    <span>{accountTarget.phone}</span>
+                    { accountTarget.insta && <span><IoLogoInstagram />{accountTarget.insta}</span> }
+                    { accountTarget.tiktok && <span><IoLogoTiktok />{accountTarget.tiktok}</span> }
+                    { accountTarget.facebook && <span><FaFacebook />{accountTarget.facebook}</span> }
+                    <div className='affiliationPage_admin_infosModal_imgs'>
+                    {
+                      accountTarget.files.map((file) => (
+                        <li key={file}>
+                          <img src={`${import.meta.env.VITE_APP_URL}/uploads/${account.id}/${file}`} alt={file} width="100" />
+                        </li>
+                      ))
+                    }
+                    </div>
+                  </div>
+                }
               </div>
             ))
           }
