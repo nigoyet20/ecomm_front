@@ -21,7 +21,6 @@ import { AccountAffiliationI } from '../../@types/affiliation';
 import Input from '../../components/App/Input/Input';
 import Checkbox from '../../components/App/Checkbox/Checkbox';
 import { isNumeric } from '../../utils/regexValidator';
-import axios from 'axios';
 import { sendDocToTelegram, sendMessageToTelegram } from '../../axios/tlg';
 
 function AffiliationPage() {
