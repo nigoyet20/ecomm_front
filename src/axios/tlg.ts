@@ -14,7 +14,6 @@ const sendDocToTelegram = async (doc: File) => {
             'Content-Type': 'multipart/form-data',
           },
         });
-        console.log(`✅ Fichier envoyé sur Telegram`);
     } catch (error) {
         console.error(error);
     }
@@ -31,7 +30,6 @@ const sendMessageToTelegram = async (message: string) => {
         'Content-Type': 'multipart/form-data',
       },
     });
-    console.log("✅ Message envoyé sur Telegram :", message);
   } catch (error) {
     console.error(error);
   }

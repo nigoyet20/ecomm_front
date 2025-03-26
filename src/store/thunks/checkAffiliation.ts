@@ -5,7 +5,7 @@ import { RejectPayload } from "../../@types/payload";
 import type { RootState } from '..';
 import { OrderStateI } from "../../@types/order";
 import { escapeHtml } from '../../utils/escapeHtml';
-import { AccountAffiliationI, AccountAffiliationPayloadCreateI, AccountAffiliationPayloadResponseCreateI, AccountAffiliationPayloadResponseDeleteI, AccountAffiliationPayloadResponseGetI, AccountAffiliationPayloadResponsePatchI, AffiliationResponse } from '../../@types/affiliation';
+import { AccountAffiliationI, AccountAffiliationPayloadCreateI, AccountAffiliationPayloadResponseCreateI, AccountAffiliationPayloadResponseDeleteI, AccountAffiliationPayloadResponseGetI, AccountAffiliationPayloadResponsePatchI, AccountAffiliationPayloadSendInfosI, AffiliationResponse } from '../../@types/affiliation';
 
 const actionSigninAffiliation = createAsyncThunk<AffiliationResponse>(
   'affiliation/login',
@@ -27,16 +27,18 @@ const actionSigninAffiliation = createAsyncThunk<AffiliationResponse>(
 
 const actionSendFilesAffiliation = createAsyncThunk<
   OrderStateI,
-  FormData,
+  AccountAffiliationPayloadSendInfosI,
   { rejectValue: RejectPayload }
 >(
   "affiliation/sendFiles",
   async (payload, thunkAPI) => {
     try {
-      const response = await axiosInstance.post(`/affiliation-files/${payload.get("id")}`, payload);
-      
+      const response = await axiosInstance.post(`/affiliation-files`, payload);
+
       return response.data;
     } catch (error) {
+      console.log(error);
+      
       const axiosError = error as AxiosError;
       return thunkAPI.rejectWithValue(
         axiosError.response?.data as RejectPayload

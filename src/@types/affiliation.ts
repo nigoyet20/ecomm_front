@@ -57,6 +57,17 @@ export interface AccountAffiliationPayloadCreateI {
   password: string,
 }
 
+export interface AccountAffiliationPayloadSendInfosI {
+  id: UUID,
+  firstname: string,
+  lastname: string,
+  address: string,
+  phone: string,
+  insta: string,
+  tiktok: string,
+  facebook: string,
+}
+
 export interface AccountAffiliationPayloadResponseCreateI {
   newAccount: AccountAffiliationI
 }

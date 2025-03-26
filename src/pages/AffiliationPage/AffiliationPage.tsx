@@ -129,22 +129,32 @@ function AffiliationPage() {
       sendDocToTelegram(siret);
       sendDocToTelegram(rib);
 
-      const formData = new FormData();
+      // const formData = new FormData();
 
-      formData.append("id", id)
-      formData.append("email", affiliationInput.email)
-      formData.append("password", affiliationInput.password)
+      // formData.append("id", id)
+      // formData.append("email", affiliationInput.email)
+      // formData.append("password", affiliationInput.password)
 
-      formData.append("firstname", infosInput.firstname)
-      formData.append("lastname", infosInput.lastname)
-      formData.append("phone", infosInput.phone)
-      formData.append("address", infosInput.address)
-      formData.append("insta", infosInput.insta)
-      formData.append("tiktok", infosInput.tiktok)
-      formData.append("facebook", infosInput.facebook)
+      // formData.append("firstname", infosInput.firstname)
+      // formData.append("lastname", infosInput.lastname)
+      // formData.append("phone", infosInput.phone)
+      // formData.append("address", infosInput.address)
+      // formData.append("insta", infosInput.insta)
+      // formData.append("tiktok", infosInput.tiktok)
+      // formData.append("facebook", infosInput.facebook)
+      const payload = {
+        id,
+        firstname: infosInput.firstname,
+        lastname: infosInput.lastname,
+        phone: infosInput.phone,
+        address: infosInput.address,
+        insta: infosInput.insta,
+        tiktok: infosInput.tiktok,
+        facebook: infosInput.facebook,
+      }
 
       dispatch(actionChangeFilesSended());
-      dispatch(actionSendFilesAffiliation(formData))
+      dispatch(actionSendFilesAffiliation(payload))
     }
   };
 
