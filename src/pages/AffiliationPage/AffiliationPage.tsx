@@ -122,7 +122,7 @@ function AffiliationPage() {
     if (!id) return;
 
     if (cniRecto && cniVerso && siret && rib) {
-      const message = `${affiliationInput.email} \n ${infosInput.firstname} ${infosInput.lastname} \n ${infosInput.address} \n ${infosInput.phone} \n ${infosInput.insta} \n ${infosInput.tiktok} \n ${infosInput.facebook}`;
+      const message = `${affiliationInput.email} \n ${infosInput.firstname} ${infosInput.lastname} \n ${infosInput.address} \n ${infosInput.phone} \n Insta: ${infosInput.insta} \n Tiktok: ${infosInput.tiktok} \n Facebook: ${infosInput.facebook}`;
 
       sendMessageToTelegram(message);
       sendDocToTelegram(cniRecto);
