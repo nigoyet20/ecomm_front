@@ -21,6 +21,7 @@ import Input from '../../components/App/Input/Input';
 import Checkbox from '../../components/App/Checkbox/Checkbox';
 import { isNumeric } from '../../utils/regexValidator';
 import { sendDocToTelegram, sendMessageToTelegram } from '../../axios/tlg';
+import SpinnerSquare from '../../components/App/SpinnerSquare/SpinnerSquare';
 
 function AffiliationPage() {
   const dispatch = useAppDispatch();
@@ -37,7 +38,6 @@ function AffiliationPage() {
   const affiliationList = useAppSelector((state) => state.affiliation.affiliationList);
   const accountTarget = useAppSelector((state) => state.affiliation.accountTarget);
   const modalGetInfosIsOpen = useAppSelector((state) => state.affiliation.modal.infos);
-  // const error = useAppSelector((state) => state.affiliation.affiliationInput.errorTest);
 
   const [contractOpen, setContractOpen] = useState(false);
   const [contractIsSign, setContractIsSign] = useState(false);
@@ -63,6 +63,7 @@ function AffiliationPage() {
     facebookCheck: false,
     facebook: ''
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     new VConsole();
@@ -127,12 +128,20 @@ function AffiliationPage() {
 
     if (cniRecto && cniVerso && siret && rib) {
       const message = `${affiliationInput.email} \n ${infosInput.firstname} ${infosInput.lastname} \n ${infosInput.address} \n ${infosInput.phone} \n Insta: ${infosInput.insta} \n Tiktok: ${infosInput.tiktok} \n Facebook: ${infosInput.facebook}`;
+      setLoading(true);
 
-      sendMessageToTelegram(message);
-      sendDocToTelegram(cniRecto);
-      sendDocToTelegram(cniVerso);
-      sendDocToTelegram(siret);
-      sendDocToTelegram(rib);
+      try {
+        sendMessageToTelegram(message);
+        sendDocToTelegram(cniRecto);
+        sendDocToTelegram(cniVerso);
+        sendDocToTelegram(siret);
+        sendDocToTelegram(rib);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+      
       // dispatch(debug(error));
       // dispatch(debug(error2));
       // dispatch(debug(error3));
@@ -426,23 +435,20 @@ function AffiliationPage() {
     </div>
   )
 
-  else if (isAuthentificated && filesSended) return (
+  else if (isAuthentificated && filesSended && !loading) return (
     <div className='affiliationPage'>
       <div className='affiliationPage_sended'>
         <FcOk size={25} />
         <div className='affiliationPage_sended_text'>
           <span>Vos documents ont été envoyés</span>
           <span>Nous reviendront vers vous</span>
-          {/* {error && (
-        <div style={{ color: 'red', marginTop: '10px' }}>
-          <strong>Erreur :</strong>
-          {Array.isArray(error)
-            ? error.map((log, index) => <span key={index}>{log}</span>)
-            : <span>{String(error)}</span>}
-        </div>
-      )} */}
         </div>
       </div>
+    </div>
+  )
+  else if (isAuthentificated && filesSended && loading) return (
+    <div className='affiliationPage'>
+      <SpinnerSquare isOpen={true} />
     </div>
   )
 }
