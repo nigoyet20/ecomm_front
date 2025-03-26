@@ -268,4 +268,12 @@
       width: 100%;
     }
   }
+
+  &_loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+  }
 }

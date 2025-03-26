@@ -265,7 +265,10 @@ function AffiliationPage() {
 
   if (isAuthentificated && loading) return (
     <div className='affiliationPage'>
-      <SpinnerSquare isOpen={true} />
+      <div className='affiliationPage_loading'>
+        <span className='affiliationPage_loading_message'>Cette opération peut prendre quelques minutes</span>
+        <SpinnerSquare isOpen={true} />
+      </div>
     </div>
   )
 
