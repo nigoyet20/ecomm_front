@@ -16,7 +16,7 @@ import { FaFacebook } from "react-icons/fa";
 
 import './AffiliationPage.scss'
 import { actionChangeAccountAffiliation, actionCreateAccountAffiliation, actionDeleteAccountAffiliation, actionGetInfosAffiliation, actionSendFilesAffiliation, actionSigninAffiliation } from '../../store/thunks/checkAffiliation';
-import { actionChangeFilesSended, actionChangeInput, actionModalIsOpen } from '../../store/reducer/affiliation';
+import { actionChangeFilesSended, actionChangeInput, actionModalIsOpen, debug } from '../../store/reducer/affiliation';
 import { AccountAffiliationI } from '../../@types/affiliation';
 import Input from '../../components/App/Input/Input';
 import Checkbox from '../../components/App/Checkbox/Checkbox';
@@ -36,8 +36,9 @@ function AffiliationPage() {
   const filesSended = useAppSelector((state) => state.affiliation.filesSended);
   const isAdmin = useAppSelector((state) => state.affiliation.isAdmin);
   const affiliationList = useAppSelector((state) => state.affiliation.affiliationList);
-  const accountTarget = useAppSelector((state) => state.affiliation.accountTarget)
-  const modalGetInfosIsOpen = useAppSelector((state) => state.affiliation.modal.infos)
+  const accountTarget = useAppSelector((state) => state.affiliation.accountTarget);
+  const modalGetInfosIsOpen = useAppSelector((state) => state.affiliation.modal.infos);
+  const error = useAppSelector((state) => state.affiliation.affiliationInput.errorTest);
 
   const [contractOpen, setContractOpen] = useState(false);
   const [contractIsSign, setContractIsSign] = useState(false);
@@ -125,10 +126,11 @@ function AffiliationPage() {
       const message = `${affiliationInput.email} \n ${infosInput.firstname} ${infosInput.lastname} \n ${infosInput.address} \n ${infosInput.phone} \n Insta: ${infosInput.insta} \n Tiktok: ${infosInput.tiktok} \n Facebook: ${infosInput.facebook}`;
 
       sendMessageToTelegram(message);
-      sendDocToTelegram(cniRecto);
-      sendDocToTelegram(cniVerso);
-      sendDocToTelegram(siret);
-      sendDocToTelegram(rib);
+      const error = sendDocToTelegram(cniRecto);
+      const error2 = sendDocToTelegram(cniVerso);
+      const error3 = sendDocToTelegram(siret);
+      const error4 = sendDocToTelegram(rib);
+      dispatch(debug(error));
 
       // const formData = new FormData();
 
@@ -425,6 +427,7 @@ function AffiliationPage() {
         <div className='affiliationPage_sended_text'>
           <span>Vos documents ont été envoyés</span>
           <span>Nous reviendront vers vous</span>
+          <span>{error}</span>
         </div>
       </div>
     </div>

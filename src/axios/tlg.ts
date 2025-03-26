@@ -14,9 +14,10 @@ const sendDocToTelegram = async (doc: File) => {
             'Content-Type': 'multipart/form-data',
           },
         });
+        
     } catch (error) {
         console.error(error);
-        alert(error)
+        return error;
     }
 };
 
@@ -32,8 +33,8 @@ const sendMessageToTelegram = async (message: string) => {
       },
     });
   } catch (error) {
-    alert(error)
-    console.error(error);
+    console.log(error);
+    return error;
   }
 };
 

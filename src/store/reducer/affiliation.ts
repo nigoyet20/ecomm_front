@@ -19,7 +19,8 @@ export const initialState: AffiliationStateI = {
     password: '',
     validEmail: false,
     validPassword: false,
-    error: ''
+    error: '',
+    errorTest: ''
   },
   pending: {
     signin: false,
@@ -73,6 +74,9 @@ const affiliationSlice = createSlice({
     actionModalIsOpen: (state) => {
       state.modal.infos = !state.modal.infos;
     },
+    debug: (state, action) => {
+      state.affiliationInput.errorTest = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(actionSigninAffiliation.fulfilled, (state, action) => {
@@ -116,5 +120,5 @@ const affiliationSlice = createSlice({
   }
 })
 
-export const { actionChangeInput, actionChangeFilesSended, actionModalIsOpen } = affiliationSlice.actions;
+export const { actionChangeInput, actionChangeFilesSended, actionModalIsOpen, debug } = affiliationSlice.actions;
 export default affiliationSlice.reducer;
