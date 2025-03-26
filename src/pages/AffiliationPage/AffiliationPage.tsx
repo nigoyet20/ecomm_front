@@ -65,6 +65,7 @@ function AffiliationPage() {
   });
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     if (!event.target.files) return;
     switch (event.target.name) {
       case 'cniRecto':
