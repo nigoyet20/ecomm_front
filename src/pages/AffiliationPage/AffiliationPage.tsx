@@ -120,7 +120,6 @@ function AffiliationPage() {
       return true;
     return false;
   };
-  console.log(loading);
   
   const handleSigninSubmit = async(event: FormEvent) => {
     event.preventDefault();
@@ -143,24 +142,6 @@ function AffiliationPage() {
         setLoading(false);
       }
       
-      // dispatch(debug(error));
-      // dispatch(debug(error2));
-      // dispatch(debug(error3));
-      // dispatch(debug(error4));
-
-      // const formData = new FormData();
-
-      // formData.append("id", id)
-      // formData.append("email", affiliationInput.email)
-      // formData.append("password", affiliationInput.password)
-
-      // formData.append("firstname", infosInput.firstname)
-      // formData.append("lastname", infosInput.lastname)
-      // formData.append("phone", infosInput.phone)
-      // formData.append("address", infosInput.address)
-      // formData.append("insta", infosInput.insta)
-      // formData.append("tiktok", infosInput.tiktok)
-      // formData.append("facebook", infosInput.facebook)
       const payload = {
         id,
         firstname: infosInput.firstname,

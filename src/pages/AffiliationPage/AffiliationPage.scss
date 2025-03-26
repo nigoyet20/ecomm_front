@@ -277,8 +277,9 @@
     width: 100%;
     
     &_message {
-      transform: translateY(-2rem);
+      transform: translateY(-6rem);
       z-index: 1001;
+      font-weight: 600;
     }
   }
 }
