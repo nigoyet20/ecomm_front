@@ -34,7 +34,7 @@ const actionSendFilesAffiliation = createAsyncThunk<
   async (payload, thunkAPI) => {
     try {
       const response = await axiosInstance.post(`/affiliation-files/${payload.get("id")}`, payload);
-
+      
       return response.data;
     } catch (error) {
       const axiosError = error as AxiosError;
