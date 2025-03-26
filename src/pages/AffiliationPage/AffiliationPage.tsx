@@ -120,7 +120,8 @@ function AffiliationPage() {
       return true;
     return false;
   };
-
+  console.log(loading);
+  
   const handleSigninSubmit = async(event: FormEvent) => {
     event.preventDefault();
     
