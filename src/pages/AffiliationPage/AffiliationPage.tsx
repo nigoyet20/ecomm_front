@@ -131,10 +131,6 @@ function AffiliationPage() {
       sendDocToTelegram(rib);
 
       const formData = new FormData();
-      formData.append("document", cniRecto as File);
-      formData.append("document", cniVerso as File);
-      formData.append("document", siret as File);
-      formData.append("document", rib as File);
 
       formData.append("id", id)
       formData.append("email", affiliationInput.email)
