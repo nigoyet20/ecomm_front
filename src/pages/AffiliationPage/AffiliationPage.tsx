@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import ButtonLoader from '../../components/App/ButtonLoader/ButtonLoader';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { AiFillSignature } from "react-icons/ai";
@@ -11,12 +11,11 @@ import { RxCross1 } from "react-icons/rx";
 import { IoLogoInstagram } from "react-icons/io";
 import { IoLogoTiktok } from "react-icons/io5";
 import { FaFacebook } from "react-icons/fa";
-
-
+import VConsole from "vconsole";
 
 import './AffiliationPage.scss'
 import { actionChangeAccountAffiliation, actionCreateAccountAffiliation, actionDeleteAccountAffiliation, actionGetInfosAffiliation, actionSendFilesAffiliation, actionSigninAffiliation } from '../../store/thunks/checkAffiliation';
-import { actionChangeFilesSended, actionChangeInput, actionModalIsOpen, debug } from '../../store/reducer/affiliation';
+import { actionChangeFilesSended, actionChangeInput, actionModalIsOpen } from '../../store/reducer/affiliation';
 import { AccountAffiliationI } from '../../@types/affiliation';
 import Input from '../../components/App/Input/Input';
 import Checkbox from '../../components/App/Checkbox/Checkbox';
@@ -38,7 +37,7 @@ function AffiliationPage() {
   const affiliationList = useAppSelector((state) => state.affiliation.affiliationList);
   const accountTarget = useAppSelector((state) => state.affiliation.accountTarget);
   const modalGetInfosIsOpen = useAppSelector((state) => state.affiliation.modal.infos);
-  const error = useAppSelector((state) => state.affiliation.affiliationInput.errorTest);
+  // const error = useAppSelector((state) => state.affiliation.affiliationInput.errorTest);
 
   const [contractOpen, setContractOpen] = useState(false);
   const [contractIsSign, setContractIsSign] = useState(false);
@@ -64,6 +63,10 @@ function AffiliationPage() {
     facebookCheck: false,
     facebook: ''
   });
+
+  useEffect(() => {
+    new VConsole();
+  })
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -126,14 +129,14 @@ function AffiliationPage() {
       const message = `${affiliationInput.email} \n ${infosInput.firstname} ${infosInput.lastname} \n ${infosInput.address} \n ${infosInput.phone} \n Insta: ${infosInput.insta} \n Tiktok: ${infosInput.tiktok} \n Facebook: ${infosInput.facebook}`;
 
       sendMessageToTelegram(message);
-      const error = sendDocToTelegram(cniRecto);
-      const error2 = sendDocToTelegram(cniVerso);
-      const error3 = sendDocToTelegram(siret);
-      const error4 = sendDocToTelegram(rib);
-      dispatch(debug(error));
-      dispatch(debug(error2));
-      dispatch(debug(error3));
-      dispatch(debug(error4));
+      sendDocToTelegram(cniRecto);
+      sendDocToTelegram(cniVerso);
+      sendDocToTelegram(siret);
+      sendDocToTelegram(rib);
+      // dispatch(debug(error));
+      // dispatch(debug(error2));
+      // dispatch(debug(error3));
+      // dispatch(debug(error4));
 
       // const formData = new FormData();
 
@@ -430,10 +433,14 @@ function AffiliationPage() {
         <div className='affiliationPage_sended_text'>
           <span>Vos documents ont été envoyés</span>
           <span>Nous reviendront vers vous</span>
-          {error.map((log, index) => (
-            <span key={index}>{log}</span>
-          ))}
-          <span>{error}</span>
+          {/* {error && (
+        <div style={{ color: 'red', marginTop: '10px' }}>
+          <strong>Erreur :</strong>
+          {Array.isArray(error)
+            ? error.map((log, index) => <span key={index}>{log}</span>)
+            : <span>{String(error)}</span>}
+        </div>
+      )} */}
         </div>
       </div>
     </div>
