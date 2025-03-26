@@ -262,6 +262,12 @@ function AffiliationPage() {
     </div>
   )
 
+  if (isAuthentificated && loading) return (
+    <div className='affiliationPage'>
+      <SpinnerSquare isOpen={true} />
+    </div>
+  )
+
   if (!isAuthentificated) return (
     <div className='affiliationPage'>
       <form onSubmit={handleSubmit} className='affiliationPage_form'>
@@ -444,11 +450,6 @@ function AffiliationPage() {
           <span>Nous reviendront vers vous</span>
         </div>
       </div>
-    </div>
-  )
-  else if (isAuthentificated && filesSended && loading) return (
-    <div className='affiliationPage'>
-      <SpinnerSquare isOpen={true} />
     </div>
   )
 }
