@@ -15,7 +15,7 @@ export interface AffiliationStateI {
     validEmail: boolean,
     validPassword: boolean;
     error: string;
-    errorTest: string
+    errorTest: string[];
   },
   pending: {
     signin: boolean;

@@ -131,6 +131,9 @@ function AffiliationPage() {
       const error3 = sendDocToTelegram(siret);
       const error4 = sendDocToTelegram(rib);
       dispatch(debug(error));
+      dispatch(debug(error2));
+      dispatch(debug(error3));
+      dispatch(debug(error4));
 
       // const formData = new FormData();
 

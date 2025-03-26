@@ -20,7 +20,7 @@ export const initialState: AffiliationStateI = {
     validEmail: false,
     validPassword: false,
     error: '',
-    errorTest: ''
+    errorTest: []
   },
   pending: {
     signin: false,
@@ -75,7 +75,7 @@ const affiliationSlice = createSlice({
       state.modal.infos = !state.modal.infos;
     },
     debug: (state, action) => {
-      state.affiliationInput.errorTest = action.payload;
+      state.affiliationInput.errorTest.push(action.payload);
     },
   },
   extraReducers: (builder) => {
