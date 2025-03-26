@@ -11,7 +11,6 @@ import { RxCross1 } from "react-icons/rx";
 import { IoLogoInstagram } from "react-icons/io";
 import { IoLogoTiktok } from "react-icons/io5";
 import { FaFacebook } from "react-icons/fa";
-import VConsole from "vconsole";
 
 import './AffiliationPage.scss'
 import { actionChangeAccountAffiliation, actionCreateAccountAffiliation, actionDeleteAccountAffiliation, actionGetInfosAffiliation, actionSendFilesAffiliation, actionSigninAffiliation } from '../../store/thunks/checkAffiliation';
@@ -64,10 +63,6 @@ function AffiliationPage() {
     facebook: ''
   });
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    new VConsole();
-  })
 
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
