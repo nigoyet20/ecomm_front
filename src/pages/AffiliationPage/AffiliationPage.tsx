@@ -430,6 +430,9 @@ function AffiliationPage() {
         <div className='affiliationPage_sended_text'>
           <span>Vos documents ont été envoyés</span>
           <span>Nous reviendront vers vous</span>
+          {error.map((log, index) => (
+            <span key={index}>{log}</span>
+          ))}
           <span>{error}</span>
         </div>
       </div>
