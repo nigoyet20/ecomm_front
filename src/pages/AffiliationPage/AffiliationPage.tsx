@@ -262,7 +262,7 @@ function AffiliationPage() {
         <h4 className='affiliationPage_contract_subtitle'>Article 1 - Objet du Contrat</h4>
         <p className='affiliationPage_contract_p'>1.1. ODP souhaite collaborer avec l'Influenceur pour promouvoir ses produits via les plateformes de médias sociaux de l'Influenceur.</p>
         <p className='affiliationPage_contract_p'>1.2. L'Influenceur accepte de promouvoir les produits ODP conformément aux directives et objectifs définis par ODP.</p>
-        <h4>Article 2 - Durée du Contrat</h4>
+        <h4 className='affiliationPage_contract_subtitle'>Article 2 - Durée du Contrat</h4>
         <p className='affiliationPage_contract_p'>2.1. Ce contrat entre en vigueur à compter de la date de signature par les deux parties et reste en vigueur pour une période de 1 mois, sauf 
           résiliation anticipée conformément à l'article 6.</p>
         <h4 className='affiliationPage_contract_subtitle'>Article 3 - Obligations de l'Influenceur</h4>
