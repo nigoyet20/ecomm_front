@@ -61,9 +61,9 @@ function Collection({ list, amount, minPrice, maxPrice, numberPerRow }: { list?:
 
   if (getAllProductsPending) {
     return (
-      <>
+      <div className='collection'>
         {loaderContainer}
-      </>
+      </div>
     )
   } else
 
