@@ -112,10 +112,11 @@
     &_buttons {
       display: flex;
       flex-direction: column;
+      justify-content: center;
       width: 100%;
       gap: 1rem;
 
-      @include breakpoint.media('desktop') {
+      @include breakpoint.media('tablet_xl_mini') {
         flex-direction: row;
         gap: 5%;
       }
@@ -131,8 +132,8 @@
       background-color: v.$textColor-colorDark;
       color: v.$bgColor-White;
 
-      @include breakpoint.media('desktop') {
-        flex: 0 0 47%;
+      @include breakpoint.media('tablet_xl_mini') {
+        flex: 0 0 30%;
       }
 
       &-submit {
