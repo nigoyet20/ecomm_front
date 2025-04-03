@@ -172,7 +172,6 @@ function ProductPage() {
 
           <div className="product_infos_buttons">
             <button type="button" className="product_infos_button product_infos_button-submit" onClick={addToCart}>Ajouter au panier</button>
-            <button type="submit" className="product_infos_button">Acheter maintenant</button>
           </div>
 
           <div>

@@ -10,6 +10,7 @@ import { actionAddToOrder } from "../thunks/checkOrder";
 export const initialState: CartStateI = {
   cartVisitor: [],
   cartConnected: [],
+  pending: false
 };
 
 const cartSlice = createSlice({
@@ -66,6 +67,13 @@ const cartSlice = createSlice({
     });
     builder.addCase(actionAddToCart.fulfilled, (state, action) => {
       state.cartConnected = action.payload.productCarts;
+      state.pending = false;
+    });
+    builder.addCase(actionAddToCart.pending, (state) => {
+      state.pending = true;
+    });
+    builder.addCase(actionAddToCart.rejected, (state) => {
+      state.pending = false;
     });
     builder.addCase(actionDeleteOneFromCart.fulfilled, (state, action) => {
       if (action.payload.productCarts)

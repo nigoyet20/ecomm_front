@@ -41,7 +41,7 @@ export const initialState: AffiliationStateI = {
 };
 
 const affiliationSlice = createSlice({
-  name: 'order',
+  name: 'affiliation',
   initialState,
   reducers: {
     actionChangeInput: (state, action: PayloadAction<changeCredentialsAffiliationPayload>) => {

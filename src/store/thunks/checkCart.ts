@@ -28,8 +28,6 @@ const actionAddToCart = createAsyncThunk<actionAddRemovetoCartPayload, actionAdd
       const response = await axiosInstance.post('/cart', payload);
       return response.data;
     } catch (error) {
-      console.log(error);
-
       const axiosError = error as AxiosError;
       return thunkAPI.rejectWithValue(axiosError.response?.data as RejectPayload);
     }
