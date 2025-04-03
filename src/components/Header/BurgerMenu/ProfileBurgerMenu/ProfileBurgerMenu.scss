@@ -11,6 +11,7 @@
   width: 80%;
   background-color: white;
   z-index: 5;
+  overflow-y: scroll;
 
   &_background {
     position: fixed;
