@@ -593,10 +593,10 @@ const accountSlice = createSlice({
       deleteLocalStorage();
     });
     builder.addCase(actionDeleteAccount.rejected, (state, action) => {
-      state.isAuthentificated = false;
       if (action.payload?.tokenExpired && action.payload?.tokenExpired === true) {
         state.token = null;
         deleteLocalStorage();
+        state.isAuthentificated = false;
       }
       if (action.payload?.message && action.payload?.message === 'No account id') {
         state.token = null;
