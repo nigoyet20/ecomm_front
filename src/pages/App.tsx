@@ -49,11 +49,6 @@ function App() {
   useModalsWithBackButton();
 
   useEffect(() => {
-      new VConsole();
-      console.log("vConsole est activé !");
-  }, []);
-
-  useEffect(() => {
     dispatch(actionCheckToken())
   }, [dispatch]);
 

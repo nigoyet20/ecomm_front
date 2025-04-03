@@ -15,8 +15,6 @@ function HomePage() {
 
   const list = useAppSelector((state) => state.product.list);
 
-  console.log(list);
-
   useEffect(() => {
     if (list.length === 0) {
       dispatch(actionCheckProduct());
