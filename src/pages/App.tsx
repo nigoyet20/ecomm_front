@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { actionCheckToken } from '../store/thunks/checkLogin';
 import { AdminRoute, NonPrivateRoute, PrivateRoute } from '../components/App/PrivateRoute/PrivateRoute';
 import { lazy } from "react";
+import VConsole from "vconsole";
 import { useModalsWithBackButton } from "../hooks/useModalsWithBackButton.ts";
 import ContactPage from "./ContactPage/ContactPage.tsx";
 import FaqPage from "./FaqPage/FaqPage.tsx";
@@ -46,6 +47,11 @@ function App() {
   const burgerMenuIsOpen = useAppSelector((state) => state.ModalMenu.modals.burgerModalIsOpen);
 
   useModalsWithBackButton();
+
+  useEffect(() => {
+      new VConsole();
+      console.log("vConsole est activé !");
+  }, []);
 
   useEffect(() => {
     dispatch(actionCheckToken())
