@@ -97,7 +97,7 @@ function CartPage({ cancelFunction }: { cancelFunction?: () => void }) {
 
   if (pending) return (
     <div className="cartPage-pending">
-      <CircleLoader />
+      <CircleLoader black={true} />
     </div>
   )
 
