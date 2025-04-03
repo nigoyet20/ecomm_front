@@ -8,7 +8,6 @@ import { useAppDispatch, useAppSelector } from '../hooks/redux';
 import { actionCheckToken } from '../store/thunks/checkLogin';
 import { AdminRoute, NonPrivateRoute, PrivateRoute } from '../components/App/PrivateRoute/PrivateRoute';
 import { lazy } from "react";
-import VConsole from "vconsole";
 import { useModalsWithBackButton } from "../hooks/useModalsWithBackButton.ts";
 import ContactPage from "./ContactPage/ContactPage.tsx";
 import FaqPage from "./FaqPage/FaqPage.tsx";
