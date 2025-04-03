@@ -7,20 +7,29 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export const supabaseSignUp = async (email: string, password: string) => {
-  await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
   });
 
-
+  if (error) {
+    console.error("Erreur Supabase:", error.message);
+  } else {
+    console.log("Inscription réussie:", data);
+  }
 };
 
 export const supabaseSignIn = async (email: string, password: string) => {
-  await supabase.auth.signInWithPassword({
+  const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
   });
 
+  if (error) {
+    console.error("Erreur Supabase:", error.message);
+  } else {
+    console.log("Inscription réussie:", data);
+  }
 };
 
 export const supabaseSignOut = async () => {
