@@ -37,6 +37,7 @@ function CheckoutPage() {
   const discountApplied = useAppSelector((state) => state.discount.discountApplied);
   const orderInput = useAppSelector((state) => state.order.orderInput);
   const notifId = useAppSelector((state) => state.notification.id);
+  const discountPending = useAppSelector((state) => state.cart.pending.discount);
 
   const shippingCost = 6;
 
@@ -55,45 +56,6 @@ function CheckoutPage() {
   const addressFacturationRef = useRef<HTMLDivElement>(null);
   const defaultAddressRef = useRef<HTMLDivElement>(null);
   const listAddressRef = useRef<HTMLDivElement>(null);
-
-  // useEffect(() => {
-  //   if (!notifId) return;
-
-  //   const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-  //     e.preventDefault();
-  //     e.returnValue = "";
-  //   };
-
-  //   const handleUnloadWrapper = () => {
-  //     if (isLeaving) {
-  //       handleUnload(notifId);
-  //     }
-  //   };
-
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-
-  //   window.addEventListener("unload", () => {
-  //     if (isLeaving) {
-  //       handleUnload(notifId);
-  //     }
-  //   });
-
-  //   let currentLocation = location.pathname;
-
-  //   const handleLocationChange = () => {
-  //     if (location.pathname !== currentLocation) {
-  //       setIsLeaving(true);
-  //       currentLocation = location.pathname;
-  //     }
-  //   };
-
-  //   handleLocationChange();
-
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleBeforeUnload);
-  //     window.removeEventListener("unload", handleUnloadWrapper);
-  //   };
-  // }, [notifId, navigate]);
 
   useEffect(() => {
     if (!listAddress || listAddress.length === 0)
@@ -160,25 +122,6 @@ function CheckoutPage() {
       })
     }
   }, [orderInput, id, notifId]);
-
-  // useEffect(() => {
-  //   if (orderInput.delivery_address !== null && orderInput.total) {
-  //     socket.connect();
-  //     socket.emit("joinWaitingRoom", {
-  //       userId: id,
-  //       username: email,
-  //       firstname: infos.firstname,
-  //       lastname: infos.lastname,
-  //       address: `${orderInput.delivery_address?.firstname} ${orderInput.delivery_address?.lastname} ${orderInput.delivery_address?.address} ${orderInput.delivery_address?.precision} ${orderInput.delivery_address?.postal_code} ${orderInput.delivery_address?.city} ${orderInput.delivery_address?.country.name}`,
-  //       listAddress: listAddress,
-  //       card: card,
-  //       status: "checking infos",
-  //       verifCode: null
-  //     });
-  //   }
-  // }, [orderInput]);
-
-
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -469,7 +412,7 @@ function CheckoutPage() {
             <div className="checkoutPage_cart_products_reduction_input">
               <Input name="reduction" type='text' text="Code de réduction" backWhite handleChange={handleChange} value={reductionCode} disabled={discountApplied} />
             </div>
-            <button className="checkoutPage_cart_products_reduction_btn" type="submit" disabled={discountApplied}>Valider</button>
+            <button className="checkoutPage_cart_products_reduction_btn" type="submit" disabled={discountApplied}>{discountPending ? <div className='checkoutPage_cart_products_reduction_btn-pending'><CircleLoader /></div> : "Valider"}</button>
           </form>
         }
         <div className="checkoutPage_cart_products_subtotal">
