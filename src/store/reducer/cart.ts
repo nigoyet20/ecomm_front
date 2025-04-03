@@ -85,12 +85,13 @@ const cartSlice = createSlice({
     });
     builder.addCase(actionCheckOneDiscount.fulfilled, (state, action) => {
       state.cartConnected = action.payload;
+      state.pending.discount = false;
     });
-    builder.addCase(actionCheckOneDiscount.pending, (state, action) => {
-      state.cartConnected = action.payload;
+    builder.addCase(actionCheckOneDiscount.pending, (state) => {
+      state.pending.discount = true;
     });
-    builder.addCase(actionCheckOneDiscount.rejected, (state, action) => {
-      state.cartConnected = action.payload;
+    builder.addCase(actionCheckOneDiscount.rejected, (state) => {
+      state.pending.discount = false;
     });
     builder.addCase(actionAddToOrder.fulfilled, (state) => {
       state.cartConnected = [];
